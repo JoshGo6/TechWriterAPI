@@ -1,30 +1,43 @@
 openapi: 3.0.0
 info:
   title: Josh's Demonstration API
-  description: |-
-    **NOTE: This API is non-functional. I created it to demonstrate API documentation.**
-
-    This demonstration API manages information about users who contribute
-    documentation to a knowledge base. It is used for:
-
-    - Retrieving information about users who contribute to a knowledge base.
-    - Registering new users to contribute documentation to the knowledge base.
-    - Removing documentation contributors from the list of users.
-    - Updating the personal information of existing documentation contributors.
-
-    **For those new to APIs:**
-
-     API documentation describes endpoints (for example, **/information** and **/register**) and methods (for example, **GET** and **POST**). Methods are grouped under their associated endpoints. Select a colored button to learn more about that endpoint and method.
+  description: "\n**NOTE: This API is non-functional. I created it to demonstrate\
+    \ API documentation.**\nThis demonstration API manages information about users\
+    \ who contribute documentation to a knowledge base. It is used for:\n\n- Retrieving\
+    \ information about users who contribute to a knowledge base.\n- Registering new\
+    \ users to contribute documentation to the knowledge base.\n- Removing documentation\
+    \ contributors from the list of users.\n- Updating the personal information of\
+    \ existing documentation contributors.\n\n**For those new to APIs:**\n\n APIs\
+    \ allow different systems to transmit information with one another using agreed\
+    \ upon, structured language without one system needing to know the finer details\
+    \ of how the other system stores or uses the information. You can think of APIs\
+    \ as an agreed upon shorthand allowing two different systems to communicate with\
+    \ one another.\n \n This concept may sound foreign at first, but we use a version\
+    \ of APIs all the time when using equipment. When you drive a car, you instruct\
+    \ the car how to move, using four devices -- the steering wheel, brake, gas, and\
+    \ gear shifter. Using these four simple inputs, you successfully communicate to\
+    \ the car how you want it to operate without your having to know the details of\
+    \ the steering column, pistons, brake assembly, engine, or transmission in your\
+    \ car. You can think of the four devices collectively as an API that allows you\
+    \ to communicate with the car.\n \n This page contains API documentation. API\
+    \ documentation describes resources (for example, **Retrieve information**), endpoints\
+    \ (for example, **/information**,) and methods (for example, **GET**). *Resources*\
+    \ are broad categories of functionality, an *endpoint* is a relative URL path\
+    \ for accomplishing a specific task, and a *method* is an operation for creating,\
+    \ reading, updating, or deleting information. \n \n**Select a colored button to\
+    \ learn more about that endpoint and method.**"
   contact:
     name: Josh Goldstein
     url: JoshGoldstein.org
     email: JoshGoldstein@JoshGoldstein.org
-  version: 1.0.0
+  version: 1.1.0
 servers:
 - url: https://api.joshgoldstein.org/prod
   description: Production API server
 - url: https://api.joshgoldstein.org/dev
   description: Dev API server
+security:
+- BasicAuth: []
 tags:
 - name: Retrieve information
   description: |
@@ -448,3 +461,6 @@ components:
       type: apiKey
       name: X-API-key
       in: header
+    BasicAuth:
+      type: http
+      scheme: basic
