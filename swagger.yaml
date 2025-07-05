@@ -36,6 +36,8 @@ servers:
   description: Production API server
 - url: https://api.joshgoldstein.org/dev
   description: Dev API server
+security:
+- BasicAuth: []
 tags:
 - name: Retrieve information
   description: |
@@ -459,3 +461,6 @@ components:
       type: apiKey
       name: X-API-key
       in: header
+    basicAuth:
+      type: http
+      scheme: basic
