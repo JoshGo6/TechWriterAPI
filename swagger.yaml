@@ -461,6 +461,6 @@ components:
       type: apiKey
       name: X-API-key
       in: header
-    basicAuth:
+    BasicAuth:
       type: http
       scheme: basic
