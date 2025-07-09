@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: Josh's Demonstration API
-  description: "\n**NOTE: This API is non-functional. I created it to demonstrate\
-    \ API documentation.**\nThis demonstration API manages information about users\
-    \ who contribute documentation to a knowledge base. It is used for:\n\n- Retrieving\
+  description: "**NOTE: This API is non-functional. I created it to demonstrate API\
+    \ documentation.**\nThis demonstration API manages information about users who\
+    \ contribute documentation to a knowledge base. It is used for:\n\n- Retrieving\
     \ information about users who contribute to a knowledge base.\n- Registering new\
     \ users to contribute documentation to the knowledge base.\n- Removing documentation\
     \ contributors from the list of users.\n- Updating the personal information of\
@@ -28,9 +28,9 @@ info:
     \ learn more about that endpoint and method.**"
   contact:
     name: Josh Goldstein
-    url: JoshGoldstein.org
+    url: ""
     email: JoshGoldstein@JoshGoldstein.org
-  version: 1.1.0
+  version: 1.2.0
 servers:
 - url: https://api.joshgoldstein.org/prod
   description: Production API server
@@ -40,8 +40,7 @@ security:
 - BasicAuth: []
 tags:
 - name: Retrieve information
-  description: |
-    Obtain information about documentation contributors
+  description: Obtain information about documentation contributors
 - name: Register users
   description: Register new documentation contributors
 - name: Manage users
@@ -64,15 +63,15 @@ paths:
         description: |
           id of the user: \
           Min val.: 0. \
-          Max val.: 9999.
+          Max val.: 999.
         required: false
         style: form
         explode: true
         schema:
-          maximum: 9999
+          maximum: 999
           minimum: 0
           type: integer
-          example: 1234
+          example: 123
       - name: conributionLevel
         in: query
         description: |
@@ -111,7 +110,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserServerError"
+                $ref: "#/components/schemas/ServerError"
       security: []
   /register:
     post:
@@ -151,7 +150,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserServerError"
+                $ref: "#/components/schemas/ServerError"
       security:
       - apiKeyAuth: []
   /User/{id}:
@@ -167,13 +166,13 @@ paths:
         description: |
           id of the user: \
           Min val.: 0. \
-          Max val.: 9999.
+          Max val.: 999.
         required: true
         style: simple
         explode: false
         schema:
           type: integer
-          example: 12345
+          example: 123
       responses:
         "202":
           description: User deleted.
@@ -193,7 +192,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserServerError"
+                $ref: "#/components/schemas/ServerError"
       security:
       - apiKeyAuth: []
     patch:
@@ -214,13 +213,13 @@ paths:
         description: |
           id of the user: \
           Min val.: 0. \
-          Max val.: 9999.
+          Max val.: 999.
         required: true
         style: simple
         explode: false
         schema:
           type: integer
-          example: 12345
+          example: 123
       - name: name
         in: query
         description: Name of user.
@@ -264,8 +263,8 @@ paths:
         style: form
         explode: true
         schema:
-          type: string
-          example: "12345"
+          type: integer
+          example: 20193
       responses:
         "200":
           description: User updated.
@@ -285,7 +284,50 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserServerError"
+                $ref: "#/components/schemas/ServerError"
+      security:
+      - apiKeyAuth: []
+  /User/{id}/deactivate:
+    patch:
+      tags:
+      - Manage users
+      summary: Deactivate user
+      description: Deactivate user from the list of technical writers currently contributing
+        content.
+      operationId: deactivateUser
+      parameters:
+      - name: id
+        in: path
+        description: |
+          id of the user: \
+          Min val.: 0. \
+          Max val.: 999.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 123
+      responses:
+        "200":
+          description: User deactivated.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: User deactivated.
+        "404":
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFoundSimpleError"
+        "500":
+          description: Server error. Please try again later.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerError"
       security:
       - apiKeyAuth: []
 components:
@@ -297,15 +339,19 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/User_users"
+        ? ""
+        : type: string
+          x-stoplight:
+            id: adahsk2zul8uf
     NotFoundSimpleError:
       type: string
       example: User 12345 not found.
-    UserServerError:
+    ServerError:
       type: object
       properties:
         errornum:
-          type: string
-          example: "500"
+          type: integer
+          example: 500
         errortext:
           type: string
           example: Josh's server is busy.
@@ -336,8 +382,8 @@ components:
           type: string
           example: "Writerville, VA"
         zip:
-          type: string
-          example: "12345"
+          type: integer
+          example: 12345
     User_users:
       type: object
       properties:
@@ -369,13 +415,13 @@ components:
       description: |
         id of the user: \
         Min val.: 0. \
-        Max val.: 9999.
+        Max val.: 999.
       required: true
       style: simple
       explode: false
       schema:
         type: integer
-        example: 12345
+        example: 123
     name:
       name: name
       in: query
@@ -424,8 +470,8 @@ components:
       style: form
       explode: true
       schema:
-        type: string
-        example: "12345"
+        type: integer
+        example: 12345
     contributionLevel:
       name: conributionLevel
       in: query
