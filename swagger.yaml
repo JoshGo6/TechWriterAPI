@@ -296,6 +296,8 @@ paths:
       summary: Activate user
       description: Reactivate user who was previously deactivated.
       operationId: activateUser
+      parameters:
+      - $ref: '#/components/parameters/id-required'
       responses:
         '200':
           description: User is now active again.
@@ -318,8 +320,7 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       security:
         - apiKeyAuth: []
-    parameters:
-      - $ref: '#/components/parameters/id-required'
+
 components:
   schemas:
     User:
