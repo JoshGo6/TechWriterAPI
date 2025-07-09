@@ -387,7 +387,7 @@ components:
             id: adahsk2zul8uf
     NotFoundSimpleError:
       type: string
-      example: User 12345 not found.
+      example: User 123 not found.
     ServerError:
       type: object
       properties:
@@ -425,13 +425,13 @@ components:
           example: "Writerville, VA"
         zip:
           type: integer
-          example: 12345
+          example: 20193
     User_users:
       type: object
       properties:
         id:
           type: integer
-          example: 12345
+          example: 123
         name:
           type: string
           example: Josh G.
@@ -513,7 +513,7 @@ components:
       explode: true
       schema:
         type: integer
-        example: 12345
+        example: 20193
     contributionLevel:
       name: conributionLevel
       in: query
