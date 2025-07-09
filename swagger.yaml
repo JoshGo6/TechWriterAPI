@@ -32,9 +32,9 @@ servers:
 security:
   - BasicAuth: []
 tags:
-  - name: Retrieve information
+  - name: Retrieve user data
     description: Obtain information about documentation contributors
-  - name: Register users
+  - name: Register a new user
     description: Register new documentation contributors
   - name: Manage users
     description: Manage documentation contributors and their user information
@@ -42,7 +42,7 @@ paths:
   /information:
     get:
       tags:
-        - Retrieve information
+        - Retrieve user data
       summary: Retrieve list of users
       description: |
         Retrieve a list of documentation contributors, optionally filtered by
@@ -108,7 +108,7 @@ paths:
   /register:
     post:
       tags:
-        - Register users
+        - Register a new user
       summary: Register new user
       description: |
         Register a new user by providing the following information:
@@ -146,7 +146,7 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       security:
         - apiKeyAuth: []
-  '/User/{id-required}':
+  '/User/{id}':
     delete:
       tags:
         - Manage users
@@ -154,7 +154,7 @@ paths:
       description: Delete a user from the list of registered technical writers.
       operationId: deleteUser
       parameters:
-        - $ref: '#/components/parameters/id-required'
+        - $ref: '#/components/parameters/id'
       responses:
         '202':
           description: User deleted.
@@ -190,7 +190,7 @@ paths:
         - **zip**.
       operationId: patchUser
       parameters:
-        - $ref: '#/components/parameters/id-required'
+        - $ref: '#/components/parameters/id'
         - name: name
           in: query
           description: Name of user.
@@ -258,7 +258,7 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       security:
         - apiKeyAuth: []
-  '/User/{id-required}/deactivate':
+  '/User/{id}/deactivate':
     patch:
       tags:
         - Manage users
@@ -266,7 +266,7 @@ paths:
       description: Deactivate user from the list of technical writers currently contributing content.
       operationId: deactivateUser
       parameters:
-        - $ref: '#/components/parameters/id-required'
+        - $ref: '#/components/parameters/id'
       responses:
         '200':
           description: User deactivated.
@@ -289,15 +289,15 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       security:
         - apiKeyAuth: []
-  '/User/{id-required}/activate':
+  '/User/{id}/activate':
     patch:
       tags:
         - Manage users
-      summary: Activate user
+      summary: Reactivate user
       description: Reactivate user who was previously deactivated.
       operationId: activateUser
       parameters:
-      - $ref: '#/components/parameters/id-required'
+      - $ref: '#/components/parameters/id'
       responses:
         '200':
           description: User is now active again.
@@ -320,7 +320,6 @@ paths:
                 $ref: '#/components/schemas/ServerError'
       security:
         - apiKeyAuth: []
-
 components:
   schemas:
     User:
@@ -400,8 +399,8 @@ components:
           type: integer
           example: 7
   parameters:
-    id-required:
-      name: id-required
+    id:
+      name: id
       in: path
       description: |
         id of the user: \
