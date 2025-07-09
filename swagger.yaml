@@ -330,6 +330,48 @@ paths:
                 $ref: "#/components/schemas/ServerError"
       security:
       - apiKeyAuth: []
+  /User/{id}/activate:
+    patch:
+      tags:
+      - Manage users
+      summary: Activate user
+      description: Reactivate user who was previously deactivated.
+      operationId: activateUser
+      parameters:
+      - name: id
+        in: path
+        description: |
+          id of the user: \
+          Min val.: 0. \
+          Max val.: 999.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 123
+      responses:
+        "200":
+          description: User is now active again.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: User is now active again.
+        "404":
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFoundSimpleError"
+        "500":
+          description: Server error. Please try again later.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+      security:
+      - apiKeyAuth: []
 components:
   schemas:
     User:
