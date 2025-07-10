@@ -21,7 +21,7 @@ info:
     **Select a colored button to learn more about that endpoint and method.**
   contact:
     name: Josh Goldstein
-    url: ''
+    url: "https://www.joshgoldstein.org"
     email: JoshGoldstein@JoshGoldstein.org
   version: 1.2.0
 servers:
