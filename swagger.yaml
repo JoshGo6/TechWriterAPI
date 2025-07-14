@@ -36,18 +36,13 @@ paths:
         - Retrieve user data
       summary: Retrieve list of users
       description: |
-        Retrieve a list of documentation contributors, optionally filtered by
-        the following query parameters:
-        - **id**.
-        - **contributionLevel**.
+        Retrieve a list of documentation contributors, optionally filtered by `contributionLevel`.
       operationId: listUsers
       parameters:
         - name: id
           in: query
           description: |
-            id of the user: \
-            Min val.: 0. \
-            Max val.: 999.
+            ID of the user.
           required: false
           style: form
           explode: true
@@ -60,9 +55,9 @@ paths:
           in: query
           description: |
             How frequently an author contributes documentation. Allowed values:
-            - **infrequent**: Contributes 1-2 articles per year.
-            - **occasional**: Contributes 3-4 articles per year.
-            - **frequent**: Contributes 5 or more articles per year.
+            - `infrequent`: Contributes 1-2 articles per year.
+            - `occasional`: Contributes 3-4 articles per year.
+            - `frequent`: Contributes 5 or more articles per year.
           required: false
           style: form
           explode: true
@@ -102,12 +97,7 @@ paths:
         - Register a new user
       summary: Register new user
       description: |
-        Register a new user by providing the following information:
-        - **name**.
-        - **email**.
-        - **address**.
-        - **city**.
-        - **zip**.
+        Register a new tech. writer to the system. Only the sys. admin has authorization to use this endpoint.
       operationId: registerUser
       requestBody:
         content:
@@ -174,11 +164,11 @@ paths:
       summary: Update user information
       description: |
         Update any of the following user information:
-        - **name**.
-        - **email**.
-        - **address**.
-        - **city**.
-        - **zip**.
+        - `name`
+        - `email`
+        - `address`
+        - `city`
+        - `zip`
       operationId: patchUser
       parameters:
         - $ref: '#/components/parameters/id'
@@ -394,9 +384,7 @@ components:
       name: id
       in: path
       description: |
-        id of the user: \
-        Min val.: 0. \
-        Max val.: 999.
+        ID of the user.
       required: true
       style: simple
       explode: false
@@ -460,9 +448,9 @@ components:
       in: query
       description: |
         How frequently an author contributes documentation. Allowed values:
-        - **infrequent**: Contributes 1-2 articles per year.
-        - **occasional**: Contributes 3-4 articles per year.
-        - **frequent**: Contributes 5 or more articles per year.
+        - `infrequent`: Contributes 1-2 articles per year.
+        - `occasional`: Contributes 3-4 articles per year.
+        - `frequent`: Contributes 5 or more articles per year.
       required: false
       style: form
       explode: true
