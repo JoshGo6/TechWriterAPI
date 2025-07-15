@@ -4,14 +4,16 @@ info:
   description: |-
     **NOTE: This API is non-functional. I created it to demonstrate API documentation.**
     
-    Staffing agencies need to respond quickly to incoming business. Not knowing the status of your contractors puts you at risk of losing business to competitors who respond to client requests more quickly than you. By having up-to-date knowledge on where potential tech. writer contractors are located, as well as their experience levels, you can respond to client requests for staff more quickly. This demonstration API manages information about potential tech. writer conrtractors who have been verified as having contributed quality work consumed by the public. Use this API for the following purposes:
+    Staffing agencies need to respond quickly to incoming business. Not knowing the status of your contractors puts you at risk of losing business to competitors who respond to client requests more quickly than you. By having up-to-date knowledge on where potential tech. writer contractors are located, as well as their experience levels, you can respond to client requests for staff more quickly. This demonstration API manages information about potential tech. writer conrtractors who have been verified as having contributed quality work consumed by the public. 
+    
+    In this documentation, *user* refers to a technical writer. Use this API for the following purposes:
 
-    - Retrieving information about users who contribute to a knowledge base.
-    - Registering new users to contribute documentation to the knowledge base.
-    - Removing documentation contributors from the list of users.
+    - Retrieving information about users.
+    - Registering new users.
+    - Removing users.
     - Activating inactive users.
     - Deactivating active users.
-    - Updating the personal information of existing documentation contributors.
+    - Updating the personal information of an existing user.
 
   contact:
     name: Josh Goldstein
